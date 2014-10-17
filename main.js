@@ -3,10 +3,14 @@ document.addEventListener('DOMContentLoaded', function(){
 		return document.forms[0].teams.value;
 		}
 
+	var people = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven"]
+
 	document.getElementById('submit').addEventListener("click", function(){
 			switch (teamValue()) {
 				case "randomstudent":
-					alert("You clicked the 1st selection of " + teamValue());
+				    var rand = getRandomInt(0, people.length);
+				    var person = people[rand];
+					alert(person);
 					break;
 				case "neighboringpair":
 					alert("You clicked the 2nd selection of " + teamValue());
@@ -25,4 +29,11 @@ document.addEventListener('DOMContentLoaded', function(){
 					break;
 				}
 		});
+
+
 });
+
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
