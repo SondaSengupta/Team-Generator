@@ -1,26 +1,39 @@
 <!doctype html>
-		<html>
-			<head>
-				<link rel="stylesheet" type="main.css" href="main.css">
-				<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-	  			<meta charset="utf-8" />
-				<h1> The Team Generator </h1>
-			</head>
-			<body>
-				<form action="">
-				<select name="Teams">
-					<option value="randomstudent">A Random Student</option>
-					<option value="neighboringpair">Neighboring Pair</option>
-					<option value="neighboringthree">Neighboring Three</option>
-					<option value="randompair">Random Pair</option>
-					<option value="randomthree">Random Three</option>
-					<option value="randomnpair">Random N-pairing</option>
-				</select>
-				</form>
-					<form action="">
-					<input type="button" value="Submit">
-				</form>
-			</body>
-		</html>
+<html>
+	<head>
+		<link rel="stylesheet" type="main.css" href="main.css">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<meta charset="utf-8" />
+		<h1> The Team Generator </h1>
+	</head>
+	<body>
+	<script>
+	function teamValue () {
+		var teamChoice = document.forms[0].teams.value;
+		alert(teamChoice);
+		}
 
-	
+	</script>
+
+		<form action="">
+		<select name="Teams" id="teams" onchange="teamValue()">
+			<option value="randomstudent">A Random Student</option>
+			<option value="neighboringpair">Neighboring Pair</option>
+			<option value="neighboringthree">Neighboring Three</option>
+			<option value="randompair">Random Pair</option>
+			<option value="randomthree">Random Three</option>
+			<option value="randomnpair">Random N-pairing</option>
+		</select>
+		</form>
+			<form action="">
+			<input type="button" id="submit" value="Submit">
+		</form>
+	</body>
+
+	<script>
+	document.getElementById('submit').addEventListener("click", function(){
+			alert("You clicked the button");
+		}); 
+	</script>
+
+</html>
