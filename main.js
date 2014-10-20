@@ -3,14 +3,18 @@ document.addEventListener('DOMContentLoaded', function(){
 		return document.forms[0].teams.value;
 		}
 
-	var people = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven"]
+	var people = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven"];
 
 	document.getElementById('submit').addEventListener("click", function(){
 			switch (teamValue()) {
 				case "randomstudent":
 				    var rand = getRandomInt(0, people.length);
 				    var person = people[rand];
-					alert(person);
+					event.preventDefault();
+					var $li = document.createElement('li');
+					$li.innerHTML = person;
+					var $ul = document.getElementById('results');
+					$ul.appendChild($li);
 					break;
 				case "neighboringpair":
 					alert("You clicked the 2nd selection of " + teamValue());
