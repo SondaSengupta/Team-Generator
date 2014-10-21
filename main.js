@@ -1,19 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(){
 
-	function getJSON(url, cb){
-  		var xhr = new XMLHttpRequest();
-  		xhr.open('GET', url);
- 		xhr.onload = function(){
-    		cb(JSON.parse(xhr.responseText));
-  		};
-  		xhr.send();
-	}
-
-	var students;
-    getJSON('https://volunteerism-sscotth.firebaseio.com/students.json', function(data){
-      people = data;
-    });
-
 	function teamValue () {
 		return document.forms[0].teams.value;
 		}
@@ -73,6 +59,20 @@ document.addEventListener('DOMContentLoaded', function(){
        		 $ol.innerHTML = "";
        		var $h3 = document.getElementById("largeTeamWarning");
        		 $h3.innerHTML ="";
+
+       		 function getJSON(url, cb){
+  			var xhr = new XMLHttpRequest();
+  			xhr.open('GET', url);
+ 			xhr.onload = function(){
+    		cb(JSON.parse(xhr.responseText));
+  				};
+  			xhr.send();
+			}
+
+			var students;
+    		getJSON('https://volunteerism-sscotth.firebaseio.com/students.json', function(data){
+      		people = data;
+    		});
 			
 			switch (teamValue()) {
 				case "randomstudent":
