@@ -38,11 +38,9 @@ document.addEventListener('DOMContentLoaded', function(){
 	function show(element) {
   	element.classList.remove("hidden");
 	}
-
 	function hide(element) {
   	element.classList.add("hidden");
 	}
-
 	var $form = document.getElementById("generate-group");
 	var $select = $form.querySelector("select");
     var $numBox = $form.querySelector("input[type='number']");
@@ -52,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function(){
     	} else {
         hide($numBox);
       	}
-
    	});
 
 
@@ -61,6 +58,8 @@ document.addEventListener('DOMContentLoaded', function(){
 			event.preventDefault();
         	var $ol = document.getElementById("results");
        		 $ol.innerHTML = "";
+       		var $h3 = document.getElementById("largeTeamWarning");
+       		 $h3.innerHTML ="";
 			
 			switch (teamValue()) {
 				case "randomstudent":
@@ -90,7 +89,17 @@ document.addEventListener('DOMContentLoaded', function(){
 					break;
 
 				case "randomnpair":
-					
+					var inputNumber = document.forms[0].nteam.value;
+
+					if (inputNumber > people.length) {
+						var largeTeam = "There are not enough people to form teams, so they will all be in one team, like so.";
+						$h3.innerHTML = largeTeam;
+						var shuffledPeople = arrayShuffle(people);
+						neighborGrouping (shuffledPeople,inputNumber, $ol);
+					} else {
+						var shuffledPeople = arrayShuffle(people);
+						neighborGrouping (shuffledPeople,inputNumber, $ol);
+					}
 					break;
 				}
 		});
