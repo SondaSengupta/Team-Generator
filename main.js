@@ -1,9 +1,24 @@
 document.addEventListener('DOMContentLoaded', function(){
+
+	function getJSON(url, cb){
+  		var xhr = new XMLHttpRequest();
+  		xhr.open('GET', url);
+ 		xhr.onload = function(){
+    		cb(JSON.parse(xhr.responseText));
+  		};
+  		xhr.send();
+	}
+
+	var students;
+    getJSON('https://volunteerism-sscotth.firebaseio.com/students.json', function(data){
+      people = data;
+    });
+
 	function teamValue () {
 		return document.forms[0].teams.value;
 		}
 
-	var people = ["Seif", "Jackie", "Jessica", "Kimberly", "Brandon", "Blaise", "Evan", "Greg", "Charisse", "Luke", "Stephania", "David", "Steve", "Adam", "Spencer", "Leon", "Alex", "Gerald", "Sonda", "Beck", "Colby", "Kris"];
+	//var people = ["Seif", "Jackie", "Jessica", "Kimberly", "Brandon", "Blaise", "Evan", "Greg", "Charisse", "Luke", "Stephania", "David", "Steve", "Adam", "Spencer", "Leon", "Alex", "Gerald", "Sonda", "Beck", "Colby", "Kris"];
 
 	function getRandomInt(min, max) {
   		return Math.floor(Math.random() * (max - min)) + min;
@@ -52,8 +67,6 @@ document.addEventListener('DOMContentLoaded', function(){
       	}
    	});
 
-
-
 	document.getElementById('submit').addEventListener("click", function(){
 			event.preventDefault();
         	var $ol = document.getElementById("results");
@@ -67,32 +80,24 @@ document.addEventListener('DOMContentLoaded', function(){
 				    var person = people[rand];
 					addItemToList($ol, person);
 					break;
-
 				case "neighboringpair":
 					neighborGrouping (people, 2, $ol);
 					break;
-
-
 				case "neighboringthree":
 					neighborGrouping (people, 3, $ol);
 					break;
-
 				case "randompair":
 					var shuffledPeople = arrayShuffle(people);
 					neighborGrouping (shuffledPeople,2, $ol);
 					break;
-
-
 				case "randomthree":
 					var shuffledPeople = arrayShuffle(people);
 					neighborGrouping (shuffledPeople,3, $ol);
 					break;
-
 				case "randomnpair":
 					var inputNumber = document.forms[0].nteam.value;
-
 					if (inputNumber > people.length) {
-						var largeTeam = "There are not enough people to form teams, so they will all be in one team, like so.";
+						var largeTeam = "There are not enough people to form teams, so they will all be in one team, like so:";
 						$h3.innerHTML = largeTeam;
 						var shuffledPeople = arrayShuffle(people);
 						neighborGrouping (shuffledPeople,inputNumber, $ol);
