@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function(){
 		return document.forms[0].teams.value;
 		}
 
-	var people = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven"];
+	var people = ["Seif", "Jackie", "Jessica", "Kimberly", "Brandon", "Blaise", "Evan", "Greg", "Charisse", "Luke", "Stephania", "David", "Steve", "Adam", "Spencer", "Leon", "Alex", "Gerald", "Sonda", "Beck", "Colby", "Kris"];
 
 	function getRandomInt(min, max) {
   		return Math.floor(Math.random() * (max - min)) + min;
@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', function(){
     var $li = document.createElement("li");
     $li.innerHTML = items;
     $list.appendChild($li);
-}
+	}
+	
 	function neighborGrouping(list,groupSize, target){
 		var listClone = list.slice(0);
 		while( listClone.length > 0 ){
@@ -34,6 +35,28 @@ document.addEventListener('DOMContentLoaded', function(){
 			return arrayClone;
 	}
 
+	function show(element) {
+  	element.classList.remove("hidden");
+	}
+
+	function hide(element) {
+  	element.classList.add("hidden");
+	}
+
+	var $form = document.getElementById("generate-group");
+	var $select = $form.querySelector("select");
+    var $numBox = $form.querySelector("input[type='number']");
+    $select.addEventListener("change", function(event){
+    if (event.currentTarget.value === "randomnpair") {
+       show($numBox);
+    	} else {
+        hide($numBox);
+      	}
+
+   	});
+
+
+
 	document.getElementById('submit').addEventListener("click", function(){
 			event.preventDefault();
         	var $ol = document.getElementById("results");
@@ -47,25 +70,27 @@ document.addEventListener('DOMContentLoaded', function(){
 					break;
 
 				case "neighboringpair":
-					neighborGrouping (people, 2, $ol)
+					neighborGrouping (people, 2, $ol);
 					break;
 
 
 				case "neighboringthree":
-					neighborGrouping (people, 3, $ol)
+					neighborGrouping (people, 3, $ol);
 					break;
 
 				case "randompair":
 					var shuffledPeople = arrayShuffle(people);
-					neighborGrouping (shuffledPeople,2, $ol)
+					neighborGrouping (shuffledPeople,2, $ol);
 					break;
 
 
 				case "randomthree":
-					alert("You clicked the 5th selection of " + teamValue());
+					var shuffledPeople = arrayShuffle(people);
+					neighborGrouping (shuffledPeople,3, $ol);
 					break;
+
 				case "randomnpair":
-					alert("You clicked the 6th selection of " + teamValue());
+					
 					break;
 				}
 		});

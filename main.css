@@ -2,3 +2,7 @@ body {
 
 	background-color: teal;
 }
+
+.hidden {
+	display: none;
+}
